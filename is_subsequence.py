@@ -3,24 +3,35 @@ from typing import List
 
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        lt = list(t)
         ls = list(s)
-        sh: int = 0
-        th: int = 0
-        bool = True
-        while sh < len(ls) and bool:
-            while th < len(lt):
-                if(sh == len(ls)-1):
-                    bool = False
-                elif(ls[sh] == lt[th]):
-                    print("If th ", th)
-                    print("If sh ", sh)
-                    sh = sh+1
-                    th = th+1
-                    print(True)
+        lt = list(t)
+        si = 0
+        tj = 0
+        se = len(ls)-1
+        te = len(lt)-1
+        #print(len(ls))
+        if se > te:
+            return False
+        if not ls:
+            return True
+        while si <= se:
+            while tj <= te:
+                if ls[si] == lt[tj]:
+                    if si == se:
+                        return True
+                    if tj == te:
+                        return False
+                    print("if si ", ls[si])
+                    print("if tj ", lt[tj])
+                    si +=1
+                    tj +=1
+                    
                 else:
-                    print("else sh ", sh)
-                    th=th+1
-
+                    if tj == te:
+                        return False
+                    print("else si ", ls[si])
+                    print("else tj ", lt[tj])
+                    tj +=1
+        return False           
 solution = Solution()
-print(solution.isSubsequence("abc","ahbgdcdfadfa"))
+print(solution.isSubsequence("axc", "ahbgdc"))
